@@ -1,0 +1,12 @@
+_putch: CODE, 3838 0 8
+_main: CODE, 19 0 1068
+_init_serial: CODE, 3875 0 22
+___lwdiv: CODE, 4016 0 80
+_isdigit: CODE, 3897 0 23
+_tx_serial: CODE, 2029 0 16
+_printf: CODE, 1087 0 449
+___lwmod: CODE, 3946 0 70
+_xandi_lima: CODE, 1536 0 449
+___wmul: CODE, 1985 0 44
+___bmul: CODE, 3920 0 26
+Total: 2255

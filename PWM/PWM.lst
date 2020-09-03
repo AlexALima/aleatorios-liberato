@@ -1,0 +1,624 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.83 build 10920 
+                                                                                               Thu Aug 22 17:48:13 2013
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 10920"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F690
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           # 5 "C:\Users\Alexandre\Documents\Colégio\micros\PWM\PPM.c"
+    43                           	psect config,class=CONFIG,delta=2 ;#
+    44                           # 5 "C:\Users\Alexandre\Documents\Colégio\micros\PWM\PPM.c"
+    45  2007  F0E4               	dw 0xFFFC & 0xFFF7 & 0xFFEF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF ;#
+    46                           	FNROOT	_main
+    47                           	FNCALL	intlevel1,_alex
+    48                           	global	intlevel1
+    49                           	FNROOT	intlevel1
+    50                           	global	_CICLO_H
+    51                           	global	_CICLO_L
+    52                           	global	_cont
+    53                           	global	_ADCON0
+    54                           psect	text76,local,class=CODE,delta=2
+    55                           global __ptext76
+    56  0000                     __ptext76:
+    57  001F                     _ADCON0	set	31
+    58                           	global	_ADRESH
+    59  001E                     _ADRESH	set	30
+    60                           	global	_INTCON
+    61  000B                     _INTCON	set	11
+    62                           	global	_T2CON
+    63  0012                     _T2CON	set	18
+    64                           	global	_ADIF
+    65  0066                     _ADIF	set	102
+    66                           	global	_CARRY
+    67  0018                     _CARRY	set	24
+    68                           	global	_GIE
+    69  005F                     _GIE	set	95
+    70                           	global	_GO_nDONE
+    71  00F9                     _GO_nDONE	set	249
+    72                           	global	_RA1
+    73  0029                     _RA1	set	41
+    74                           	global	_TMR2IF
+    75  0061                     _TMR2IF	set	97
+    76                           	global	_TMR2ON
+    77  0092                     _TMR2ON	set	146
+    78                           	global	_ADCON1
+    79  009F                     _ADCON1	set	159
+    80                           	global	_OSCCON
+    81  008F                     _OSCCON	set	143
+    82                           	global	_PR2
+    83  0092                     _PR2	set	146
+    84                           	global	_TRISA
+    85  0085                     _TRISA	set	133
+    86                           	global	_TRISB
+    87  0086                     _TRISB	set	134
+    88                           	global	_TRISC
+    89  0087                     _TRISC	set	135
+    90                           	global	_ADIE
+    91  0466                     _ADIE	set	1126
+    92                           	global	_TMR2IE
+    93  0461                     _TMR2IE	set	1121
+    94                           	global	_ANSEL
+    95  011E                     _ANSEL	set	286
+    96                           	global	_ANSELH
+    97  011F                     _ANSELH	set	287
+    98                           	global	_EEADR
+    99  010D                     _EEADR	set	269
+   100                           	global	_EEDATA
+   101  010C                     _EEDATA	set	268
+   102                           	global	_EECON1
+   103  018C                     _EECON1	set	396
+   104                           	global	_EECON2
+   105  018D                     _EECON2	set	397
+   106                           	global	_RD
+   107  0C60                     _RD	set	3168
+   108                           	global	_WR
+   109  0C61                     _WR	set	3169
+   110                           	global	_WREN
+   111  0C62                     _WREN	set	3170
+   112                           	file	"PWM.as"
+   113                           	line	#
+   114                           psect cinit,class=CODE,delta=2
+   115                           global start_initialization
+   116  0069                     start_initialization:
+   117                           
+   118                           psect	bssCOMMON,class=COMMON,space=1
+   119                           global __pbssCOMMON
+   120  0075                     __pbssCOMMON:
+   121  0075                     _CICLO_H:
+   122  0075                            ds      1
+   123                           
+   124  0076                     _CICLO_L:
+   125  0076                            ds      1
+   126                           
+   127  0077                     _cont:
+   128  0077                            ds      1
+   129                           
+   130                           ; Clear objects allocated to COMMON
+   131                           psect cinit,class=CODE,delta=2
+   132  0069  01F5               	clrf	((__pbssCOMMON)+0)&07Fh
+   133  006A  01F6               	clrf	((__pbssCOMMON)+1)&07Fh
+   134  006B  01F7               	clrf	((__pbssCOMMON)+2)&07Fh
+   135                           psect cinit,class=CODE,delta=2
+   136                           global end_of_initialization
+   137                           
+   138                           ;End of C runtime variable initialization code
+   139                           
+   140  006C                     end_of_initialization:
+   141  006C  0183               clrf status
+   142  006D  118A  2840         ljmp _main	;jump to C main() function
+   143                           psect	cstackCOMMON,class=COMMON,space=1
+   144                           global __pcstackCOMMON
+   145  0070                     __pcstackCOMMON:
+   146                           	global	?_alex
+   147  0070                     ?_alex:	; 0 bytes @ 0x0
+   148                           	global	??_alex
+   149  0070                     ??_alex:	; 0 bytes @ 0x0
+   150                           	global	?_main
+   151  0070                     ?_main:	; 0 bytes @ 0x0
+   152  0070                     	ds	5
+   153                           	global	??_main
+   154  0075                     ??_main:	; 0 bytes @ 0x5
+   155 ;;Data sizes: Strings 0, constant 0, data 0, bss 3, persistent 0 stack 0
+   156 ;;Auto spaces:   Size  Autos    Used
+   157 ;; COMMON          14      5       8
+   158 ;; BANK0           80      0       0
+   159 ;; BANK1           80      0       0
+   160 ;; BANK2           80      0       0
+   161                           
+   162 ;;
+   163 ;; Pointer list with targets:
+   164                           
+   165                           
+   166                           
+   167 ;;
+   168 ;; Critical Paths under _main in COMMON
+   169 ;;
+   170 ;;   None.
+   171 ;;
+   172 ;; Critical Paths under _alex in COMMON
+   173 ;;
+   174 ;;   None.
+   175 ;;
+   176 ;; Critical Paths under _main in BANK0
+   177 ;;
+   178 ;;   None.
+   179 ;;
+   180 ;; Critical Paths under _alex in BANK0
+   181 ;;
+   182 ;;   None.
+   183 ;;
+   184 ;; Critical Paths under _main in BANK1
+   185 ;;
+   186 ;;   None.
+   187 ;;
+   188 ;; Critical Paths under _alex in BANK1
+   189 ;;
+   190 ;;   None.
+   191 ;;
+   192 ;; Critical Paths under _main in BANK2
+   193 ;;
+   194 ;;   None.
+   195 ;;
+   196 ;; Critical Paths under _alex in BANK2
+   197 ;;
+   198 ;;   None.
+   199                           
+   200 ;;
+   201 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   202 ;;
+   203                           
+   204 ;;
+   205 ;;Call Graph Tables:
+   206 ;;
+   207 ;; ---------------------------------------------------------------------------------
+   208 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   209 ;; ---------------------------------------------------------------------------------
+   210 ;; (0) _main                                                 0     0      0       0
+   211 ;; ---------------------------------------------------------------------------------
+   212 ;; Estimated maximum stack depth 0
+   213 ;; ---------------------------------------------------------------------------------
+   214 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   215 ;; ---------------------------------------------------------------------------------
+   216 ;; (1) _alex                                                 5     5      0       0
+   217 ;;                                              0 COMMON     5     5      0
+   218 ;; ---------------------------------------------------------------------------------
+   219 ;; Estimated maximum stack depth 1
+   220 ;; ---------------------------------------------------------------------------------
+   221                           
+   222 ;; Call Graph Graphs:
+   223                           
+   224 ;; _main (ROOT)
+   225 ;;
+   226 ;; _alex (ROOT)
+   227 ;;
+   228                           
+   229 ;; Address spaces:
+   230                           
+   231 ;;Name               Size   Autos  Total    Cost      Usage
+   232 ;;BITCOMMON            E      0       0       0        0.0%
+   233 ;;EEDATA             100      0       0       0        0.0%
+   234 ;;NULL                 0      0       0       0        0.0%
+   235 ;;CODE                 0      0       0       0        0.0%
+   236 ;;COMMON               E      5       8       1       57.1%
+   237 ;;BITSFR0              0      0       0       1        0.0%
+   238 ;;SFR0                 0      0       0       1        0.0%
+   239 ;;BITSFR1              0      0       0       2        0.0%
+   240 ;;SFR1                 0      0       0       2        0.0%
+   241 ;;STACK                0      0       0       2        0.0%
+   242 ;;BANK0               50      0       0       3        0.0%
+   243 ;;BITBANK1            50      0       0       4        0.0%
+   244 ;;BITSFR3              0      0       0       4        0.0%
+   245 ;;SFR3                 0      0       0       4        0.0%
+   246 ;;BANK1               50      0       0       5        0.0%
+   247 ;;BITSFR2              0      0       0       5        0.0%
+   248 ;;SFR2                 0      0       0       5        0.0%
+   249 ;;BITBANK2            50      0       0       6        0.0%
+   250 ;;BANK2               50      0       0       7        0.0%
+   251 ;;ABS                  0      0       8       8        0.0%
+   252 ;;BITBANK0            50      0       0       9        0.0%
+   253 ;;DATA                 0      0       8      10        0.0%
+   254                           
+   255                           	global	_main
+   256                           psect	maintext,global,class=CODE,delta=2
+   257                           global __pmaintext
+   258  0040                     __pmaintext:
+   259                           
+   260 ;; *************** function _main *****************
+   261 ;; Defined at:
+   262 ;;		line 32 in file "C:\Users\Alexandre\Documents\Colégio\micros\PWM\PPM.c"
+   263 ;; Parameters:    Size  Location     Type
+   264 ;;		None
+   265 ;; Auto vars:     Size  Location     Type
+   266 ;;		None
+   267 ;; Return value:  Size  Location     Type
+   268 ;;		None               void
+   269 ;; Registers used:
+   270 ;;		wreg, status,2
+   271 ;; Tracked objects:
+   272 ;;		On entry : 17F/0
+   273 ;;		On exit  : 0/0
+   274 ;;		Unchanged: 0/0
+   275 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   276 ;;      Params:         0       0       0       0
+   277 ;;      Locals:         0       0       0       0
+   278 ;;      Temps:          0       0       0       0
+   279 ;;      Totals:         0       0       0       0
+   280 ;;Total ram usage:        0 bytes
+   281 ;; Hardware stack levels required when called:    1
+   282 ;; This function calls:
+   283 ;;		Nothing
+   284 ;; This function is called by:
+   285 ;;		Startup code after reset
+   286 ;; This function uses a non-reentrant model
+   287 ;;
+   288                           psect	maintext
+   289                           	file	"C:\Users\Alexandre\Documents\Colégio\micros\PWM\PPM.c"
+   290                           	line	32
+   291                           	global	__size_of_main
+   292  0029                     	__size_of_main	equ	__end_of_main-_main
+   293                           	
+   294  0040                     _main:	
+   295                           	opt	stack 7
+   296                           ; Regs used in _main: [wreg+status,2]
+   297                           	line	33
+   298                           	
+   299  0040                     l2144:	
+   300                           ;PPM.c: 33: OSCCON=0b01110000;
+   301  0040  3070               	movlw	(070h)
+   302  0041  1683               	bsf	status, 5	;RP0=1, select bank1
+   303  0042  1303               	bcf	status, 6	;RP1=0, select bank1
+   304  0043  008F               	movwf	(143)^080h	;volatile
+   305                           	line	34
+   306                           ;PPM.c: 34: ANSEL=0b00000001;
+   307  0044  3001               	movlw	(01h)
+   308  0045  1283               	bcf	status, 5	;RP0=0, select bank2
+   309  0046  1703               	bsf	status, 6	;RP1=1, select bank2
+   310  0047  009E               	movwf	(286)^0100h	;volatile
+   311                           	line	35
+   312                           	
+   313  0048                     l2146:	
+   314                           ;PPM.c: 35: ANSELH=0;
+   315  0048  019F               	clrf	(287)^0100h	;volatile
+   316                           	line	36
+   317                           	
+   318  0049                     l2148:	
+   319                           ;PPM.c: 36: ADCON0=0b00000001;
+   320  0049  3001               	movlw	(01h)
+   321  004A  1283               	bcf	status, 5	;RP0=0, select bank0
+   322  004B  1303               	bcf	status, 6	;RP1=0, select bank0
+   323  004C  009F               	movwf	(31)	;volatile
+   324                           	line	37
+   325                           	
+   326  004D                     l2150:	
+   327                           ;PPM.c: 37: ADCON1=0b00100000;
+   328  004D  3020               	movlw	(020h)
+   329  004E  1683               	bsf	status, 5	;RP0=1, select bank1
+   330  004F  1303               	bcf	status, 6	;RP1=0, select bank1
+   331  0050  009F               	movwf	(159)^080h	;volatile
+   332                           	line	38
+   333                           	
+   334  0051                     l2152:	
+   335                           ;PPM.c: 38: TRISA=0b00000001;
+   336  0051  3001               	movlw	(01h)
+   337  0052  0085               	movwf	(133)^080h	;volatile
+   338                           	line	39
+   339                           ;PPM.c: 39: TRISB=0;
+   340  0053  0186               	clrf	(134)^080h	;volatile
+   341                           	line	40
+   342                           ;PPM.c: 40: TRISC=0;
+   343  0054  0187               	clrf	(135)^080h	;volatile
+   344                           	line	41
+   345                           	
+   346  0055                     l2154:	
+   347                           ;PPM.c: 41: TMR2IF=0;
+   348  0055  1283               	bcf	status, 5	;RP0=0, select bank0
+   349  0056  1303               	bcf	status, 6	;RP1=0, select bank0
+   350  0057  108C               	bcf	(97/8),(97)&7
+   351                           	line	42
+   352                           	
+   353  0058                     l2156:	
+   354                           ;PPM.c: 42: T2CON=0b00010010;
+   355  0058  3012               	movlw	(012h)
+   356  0059  0092               	movwf	(18)	;volatile
+   357                           	line	43
+   358                           	
+   359  005A                     l2158:	
+   360                           ;PPM.c: 43: TMR2IE=1;
+   361  005A  1683               	bsf	status, 5	;RP0=1, select bank1
+   362  005B  1303               	bcf	status, 6	;RP1=0, select bank1
+   363  005C  148C               	bsf	(1121/8)^080h,(1121)&7
+   364                           	line	44
+   365                           	
+   366  005D                     l2160:	
+   367                           ;PPM.c: 44: ADIE=1;
+   368  005D  170C               	bsf	(1126/8)^080h,(1126)&7
+   369                           	line	45
+   370                           	
+   371  005E                     l2162:	
+   372                           ;PPM.c: 45: INTCON=0b11000000;
+   373  005E  30C0               	movlw	(0C0h)
+   374  005F  008B               	movwf	(11)	;volatile
+   375                           	line	46
+   376                           	
+   377  0060                     l2164:	
+   378                           ;PPM.c: 46: PR2=255;
+   379  0060  30FF               	movlw	(0FFh)
+   380  0061  0092               	movwf	(146)^080h	;volatile
+   381                           	line	47
+   382                           	
+   383  0062                     l2166:	
+   384                           ;PPM.c: 47: TMR2ON=1;
+   385  0062  1283               	bcf	status, 5	;RP0=0, select bank0
+   386  0063  1303               	bcf	status, 6	;RP1=0, select bank0
+   387  0064  1512               	bsf	(146/8),(146)&7
+   388  0065  2866               	goto	l901
+   389                           	line	48
+   390                           ;PPM.c: 48: while(1){
+   391                           	
+   392  0066                     l900:	
+   393                           	line	49
+   394                           	
+   395  0066                     l901:	
+   396                           	line	48
+   397  0066  2866               	goto	l901
+   398                           	
+   399  0067                     l902:	
+   400                           	line	50
+   401                           	
+   402  0067                     l903:	
+   403                           	global	start
+   404  0067  118A  2811         	ljmp	start
+   405                           	opt stack 0
+   406                           GLOBAL	__end_of_main
+   407  0069                     	__end_of_main:
+   408 ;; =============== function _main ends ============
+   409                           
+   410                           	signat	_main,88
+   411                           	global	_alex
+   412                           psect	text77,local,class=CODE,delta=2
+   413                           global __ptext77
+   414  0013                     __ptext77:
+   415                           
+   416 ;; *************** function _alex *****************
+   417 ;; Defined at:
+   418 ;;		line 15 in file "C:\Users\Alexandre\Documents\Colégio\micros\PWM\PPM.c"
+   419 ;; Parameters:    Size  Location     Type
+   420 ;;		None
+   421 ;; Auto vars:     Size  Location     Type
+   422 ;;		None
+   423 ;; Return value:  Size  Location     Type
+   424 ;;		None               void
+   425 ;; Registers used:
+   426 ;;		wreg, status,2, status,0
+   427 ;; Tracked objects:
+   428 ;;		On entry : 0/0
+   429 ;;		On exit  : 0/0
+   430 ;;		Unchanged: 0/0
+   431 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   432 ;;      Params:         0       0       0       0
+   433 ;;      Locals:         0       0       0       0
+   434 ;;      Temps:          5       0       0       0
+   435 ;;      Totals:         5       0       0       0
+   436 ;;Total ram usage:        5 bytes
+   437 ;; Hardware stack levels used:    1
+   438 ;; This function calls:
+   439 ;;		Nothing
+   440 ;; This function is called by:
+   441 ;;		Interrupt level 1
+   442 ;; This function uses a non-reentrant model
+   443 ;;
+   444                           psect	text77
+   445                           	file	"C:\Users\Alexandre\Documents\Colégio\micros\PWM\PPM.c"
+   446                           	line	15
+   447                           	global	__size_of_alex
+   448  002D                     	__size_of_alex	equ	__end_of_alex-_alex
+   449                           	
+   450  0013                     _alex:	
+   451                           	opt	stack 7
+   452                           ; Regs used in _alex: [wreg+status,2+status,0]
+   453                           psect	intentry,class=CODE,delta=2
+   454                           global __pintentry
+   455  0004                     __pintentry:
+   456                           global interrupt_function
+   457  0004                     interrupt_function:
+   458                           	global saved_w
+   459  007E                     	saved_w	set	btemp+0
+   460  0004  00FE               	movwf	saved_w
+   461  0005  0E03               	swapf	status,w
+   462  0006  00F1               	movwf	(??_alex+1)
+   463  0007  0804               	movf	fsr0,w
+   464  0008  00F2               	movwf	(??_alex+2)
+   465  0009  080A               	movf	pclath,w
+   466  000A  00F3               	movwf	(??_alex+3)
+   467  000B  1283               	bcf	status, 5	;RP0=0, select bank0
+   468  000C  1303               	bcf	status, 6	;RP1=0, select bank0
+   469  000D  087F               	movf	btemp+1,w
+   470  000E  00F4               	movwf	(??_alex+4)
+   471  000F  118A  2813         	ljmp	_alex
+   472                           psect	text77
+   473                           	line	16
+   474                           	
+   475  0013                     i1l2126:	
+   476                           ;PPM.c: 16: if (TMR2IF){
+   477  0013  1C8C               	btfss	(97/8),(97)&7
+   478  0014  2816               	goto	u1_21
+   479  0015  2817               	goto	u1_20
+   480  0016                     u1_21:
+   481  0016  2826               	goto	i1l2136
+   482  0017                     u1_20:
+   483                           	line	17
+   484                           	
+   485  0017                     i1l2128:	
+   486                           ;PPM.c: 17: TMR2ON=0;
+   487  0017  1112               	bcf	(146/8),(146)&7
+   488                           	line	18
+   489                           ;PPM.c: 18: TMR2IF=0;
+   490  0018  108C               	bcf	(97/8),(97)&7
+   491                           	line	19
+   492                           ;PPM.c: 19: RA1=1;
+   493  0019  1485               	bsf	(41/8),(41)&7
+   494                           	line	20
+   495                           	
+   496  001A                     i1l2130:	
+   497                           ;PPM.c: 20: _delay((unsigned long)((500)*(8000000/4000000.0)));
+   498                           	opt asmopt_off
+   499  001A  30F9               movlw	249
+   500  001B  00F0               movwf	(??_alex+0)+0,f
+   501  001C                     u224_27:
+   502  001C  0064               	clrwdt
+   503  001D  0BF0               decfsz	(??_alex+0)+0,f
+   504  001E  281C               	goto	u224_27
+   505  001F  2820               	nop2	;nop
+   506  0020  0064               	clrwdt
+   507                           opt asmopt_on
+   508                           
+   509                           	line	21
+   510                           	
+   511  0021                     i1l2132:	
+   512                           ;PPM.c: 21: RA1=0;
+   513  0021  1283               	bcf	status, 5	;RP0=0, select bank0
+   514  0022  1303               	bcf	status, 6	;RP1=0, select bank0
+   515  0023  1085               	bcf	(41/8),(41)&7
+   516                           	line	22
+   517                           	
+   518  0024                     i1l2134:	
+   519                           ;PPM.c: 22: GO_nDONE=1;
+   520  0024  149F               	bsf	(249/8),(249)&7
+   521  0025  2826               	goto	i1l2136
+   522                           	line	23
+   523                           	
+   524  0026                     i1l895:	
+   525                           	line	24
+   526                           	
+   527  0026                     i1l2136:	
+   528                           ;PPM.c: 23: }
+   529                           ;PPM.c: 24: if (ADIF){
+   530  0026  1F0C               	btfss	(102/8),(102)&7
+   531  0027  2829               	goto	u2_21
+   532  0028  282A               	goto	u2_20
+   533  0029                     u2_21:
+   534  0029  2835               	goto	i1l897
+   535  002A                     u2_20:
+   536                           	line	25
+   537                           	
+   538  002A                     i1l2138:	
+   539                           ;PPM.c: 25: ADIF=0;
+   540  002A  130C               	bcf	(102/8),(102)&7
+   541                           	line	26
+   542                           	
+   543  002B                     i1l2140:	
+   544                           ;PPM.c: 26: PR2=(255-ADRESH);
+   545  002B  031E               	decf	(30),w	;volatile
+   546  002C  3AFF               	xorlw	0ffh
+   547  002D  3EFF               	addlw	0FFh
+   548  002E  1683               	bsf	status, 5	;RP0=1, select bank1
+   549  002F  1303               	bcf	status, 6	;RP1=0, select bank1
+   550  0030  0092               	movwf	(146)^080h	;volatile
+   551                           	line	27
+   552                           	
+   553  0031                     i1l2142:	
+   554                           ;PPM.c: 27: TMR2ON=1;
+   555  0031  1283               	bcf	status, 5	;RP0=0, select bank0
+   556  0032  1303               	bcf	status, 6	;RP1=0, select bank0
+   557  0033  1512               	bsf	(146/8),(146)&7
+   558  0034  2835               	goto	i1l897
+   559                           	line	28
+   560                           	
+   561  0035                     i1l896:	
+   562                           	line	29
+   563                           	
+   564  0035                     i1l897:	
+   565  0035  0874               	movf	(??_alex+4),w
+   566  0036  00FF               	movwf	btemp+1
+   567  0037  0873               	movf	(??_alex+3),w
+   568  0038  008A               	movwf	pclath
+   569  0039  0872               	movf	(??_alex+2),w
+   570  003A  0084               	movwf	fsr0
+   571  003B  0E71               	swapf	(??_alex+1)^0FFFFFF80h,w
+   572  003C  0083               	movwf	status
+   573  003D  0EFE               	swapf	saved_w,f
+   574  003E  0E7E               	swapf	saved_w,w
+   575  003F  0009               	retfie
+   576                           	opt stack 0
+   577                           GLOBAL	__end_of_alex
+   578  0040                     	__end_of_alex:
+   579 ;; =============== function _alex ends ============
+   580                           
+   581                           	signat	_alex,88
+   582                           psect	text78,local,class=CODE,delta=2
+   583                           global __ptext78
+   584  0000                     __ptext78:
+   585                           	global	btemp
+   586  007E                     	btemp set 07Eh
+   587                           
+   588                           	DABS	1,126,2	;btemp
+   589                           	global	wtemp0
+   590  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Thu Aug 22 17:48:13 2013
+
+                  _RD 0C60                    _WR 0C61                   l900 0066                   l901 0066  
+                 l902 0067                   l903 0067                   _GIE 005F                   _RA1 0029  
+                 _PR2 0092                   fsr0 0004                  l2150 004D                  l2160 005D  
+                l2152 0051                  l2144 0040                  l2162 005E                  l2154 0055  
+                l2146 0048                  l2164 0060                  l2156 0058                  l2148 0049  
+                l2166 0062                  l2158 005A                  _ADIE 0466                  _ADIF 0066  
+                _WREN 0C62                  u1_20 0017                  u1_21 0016                  u2_20 002A  
+                u2_21 0029                  _alex 0013                  _cont 0077                  _main 0040  
+                btemp 007E                  start 0011                 ?_alex 0070                 ?_main 0070  
+               _EEADR 010D                 _CARRY 0018                 _ANSEL 011E                 _T2CON 0012  
+               i1l895 0026                 i1l896 0035                 i1l897 0035                 _TRISA 0085  
+               _TRISB 0086                 _TRISC 0087                 pclath 000A                 status 0003  
+               wtemp0 007E          __end_of_alex 0040          __end_of_main 0069                ??_alex 0070  
+              ??_main 0075                _ADCON0 001F                _ADCON1 009F                _ADRESH 001E  
+              _EEDATA 010C                _EECON1 018C                _EECON2 018D                _ANSELH 011F  
+              i1l2130 001A                i1l2140 002B                i1l2132 0021                i1l2142 0031  
+              i1l2134 0024                i1l2126 0013                i1l2128 0017                i1l2136 0026  
+              i1l2138 002A                u224_27 001C                _INTCON 000B                _OSCCON 008F  
+              _TMR2IE 0461                _TMR2IF 0061                _TMR2ON 0092                saved_w 007E  
+      __pcstackCOMMON 0070            __pmaintext 0040            __pintentry 0004               _CICLO_H 0075  
+             _CICLO_L 0076  end_of_initialization 006C   start_initialization 0069           __pbssCOMMON 0075  
+   interrupt_function 0004              _GO_nDONE 00F9              __ptext76 0000              __ptext77 0013  
+            __ptext78 0000         __size_of_alex 002D         __size_of_main 0029              intlevel1 0000  

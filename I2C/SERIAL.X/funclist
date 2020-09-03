@@ -1,0 +1,5 @@
+_main: CODE, 75 0 47
+_init_serial: CODE, 122 0 23
+_tx_serial: CODE, 145 0 14
+_xandi: CODE, 19 0 56
+Total: 140
